@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="転職ロードマップ">
+<title>マーケティング転職ロードマップ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --p1: #085041; --p1m: #1D9E75; --p1l: #9FE1CB; --p1pale: #E1F5EE;
+  --p2: #26215C; --p2m: #7F77DD; --p2l: #CECBF6; --p2pale: #EEEDFE;
+  --p3: #412402; --p3m: #BA7517; --p3l: #FAC775; --p3pale: #FAEEDA;
+  --ink: #1a1a18; --ink2: #3d3d3a; --ink3: #888780; --ink4: #b4b2a9;
+  --paper: #faf9f6; --paper2: #f1efea; --paper3: #e8e6df;
+  --line: #dddbd3;
+  --mono: 'DM Mono', monospace;
+  --sans: 'Noto Sans JP', sans-serif;
+  --nav-w: 220px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bot: env(safe-area-inset-bottom, 0px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; overflow: hidden; }
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.7;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== TOP BAR (mobile) ===== */
+.top-bar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--safe-top) + 10px) 16px 10px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  flex-shrink: 0;
+}
+.top-bar-title { font-size: 14px; font-weight: 700; color: var(--ink); }
+.hamburger {
+  width: 36px; height: 36px;
+  border: none; background: none; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+}
+.hamburger span {
+  display: block; width: 20px; height: 2px;
+  background: var(--ink2); border-radius: 2px;
+  transition: all 0.25s;
+}
+
+/* ===== LAYOUT ===== */
+.app { display: flex; flex: 1; overflow: hidden; }
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: var(--nav-w);
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 20px;
+}
+.sidebar-brand {
+  padding: 24px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.brand-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 4px;
+}
+.brand-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+}
+
+.sidebar-progress {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.sp-label { font-size: 10px; color: rgba(255,255,255,0.4); margin-bottom: 6px; font-family: var(--mono); }
+.sp-bar { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+.sp-fill { height: 100%; background: #fff; border-radius: 2px; transition: width 0.5s ease; width: 0%; }
+.sp-count { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 5px; }
+
+.nav-section { padding: 16px 12px 6px; }
+.nav-section-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.25);
+  padding: 0 8px;
+  margin-bottom: 4px;
+}
+
+.phase-nav {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.phase-nav-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  user-select: none;
+}
+.phase-nav-header:hover { background: rgba(255,255,255,0.06); }
+.phase-nav-header.active-phase { background: rgba(255,255,255,0.1); }
+.phase-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+.phase-nav-label { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.75); flex: 1; }
+.phase-nav-arrow {
+  font-size: 10px; color: rgba(255,255,255,0.3);
+  transition: transform 0.2s;
+}
+.phase-nav-arrow.open { transform: rotate(90deg); }
+
+.week-nav-list { display: none; padding: 2px 0 6px 30px; }
+.week-nav-list.open { display: block; }
+.week-nav-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  transition: all 0.15s;
+  user-select: none;
+}
+.week-nav-item:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.75); }
+.week-nav-item.active {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-weight: 500;
+}
+.week-check-mini {
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  flex-shrink: 0; font-size: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: transparent;
+}
+.week-check-mini.partial { border-color: rgba(255,255,255,0.5); }
+.week-check-mini.complete { background: rgba(255,255,255,0.9); border-color: transparent; color: var(--ink); }
+
+/* ===== CONTENT AREA ===== */
+.content-wrap {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ===== PAGE ===== */
+.page { display: none; }
+.page.active { display: block; }
+
+/* Phase banner */
+.phase-banner {
+  padding: 32px 32px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.phase-banner::after {
+  content: attr(data-phase-num);
+  position: absolute;
+  right: -8px; top: -12px;
+  font-family: var(--mono);
+  font-size: 120px;
+  font-weight: 500;
+  opacity: 0.06;
+  line-height: 1;
+  color: #fff;
+  pointer-events: none;
+}
+.banner-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  opacity: 0.7;
+  margin-bottom: 8px;
+}
+.banner-title { font-size: 20px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; }
+.banner-sub { font-size: 12px; opacity: 0.7; }
+.banner-chips { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.banner-chip {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.9);
+}
+.banner-chip strong { color: #fff; }
+
+/* Week section within page */
+.week-section { display: none; }
+.week-section.active { display: block; }
+
+.week-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 32px 12px;
+  border-bottom: 1px solid var(--line);
+  position: sticky; top: 0;
+  background: var(--paper);
+  z-index: 10;
+}
+.week-badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.week-title { font-size: 14px; font-weight: 700; color: var(--ink); }
+.week-meta { font-size: 11px; color: var(--ink3); margin-left: auto; white-space: nowrap; }
+
+.tasks-list { padding: 16px 32px 24px; }
+
+/* Task card */
+.task-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.task-card:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.06); }
+
+.task-header {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 13px 14px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.task-check {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--line);
+  flex-shrink: 0; margin-top: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.task-check.done { border-color: transparent; }
+.task-check.done::after { content: "✓"; font-size: 11px; font-weight: 700; color: #fff; }
+
+.task-label {
+  flex: 1; font-size: 13px; font-weight: 500;
+  color: var(--ink); line-height: 1.5;
+}
+.task-label.done { text-decoration: line-through; color: var(--ink4); }
+.task-tags { display: flex; gap: 4px; align-items: flex-start; flex-wrap: wrap; flex-shrink: 0; }
+.ttag {
+  font-size: 9px; padding: 2px 7px;
+  border-radius: 10px; font-family: var(--mono);
+  white-space: nowrap; margin-top: 2px;
+}
+.ttag-learn { background: var(--p1pale); color: var(--p1); }
+.ttag-action { background: var(--p2pale); color: var(--p2); }
+.ttag-output { background: var(--p3pale); color: var(--p3); }
+.expand-btn {
+  font-size: 14px; color: var(--ink4);
+  transition: transform 0.22s;
+  flex-shrink: 0; margin-top: 2px;
+}
+.expand-btn.open { transform: rotate(180deg); }
+
+.task-body {
+  display: none;
+  padding: 0 14px 14px 46px;
+  border-top: 1px solid var(--line);
+  animation: slideDown 0.2s ease;
+}
+@keyframes slideDown { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.task-body.open { display: block; }
+
+.tb-section { margin-top: 12px; }
+.tb-label {
+  font-family: var(--mono);
+  font-size: 9px; letter-spacing: 0.1em;
+  color: var(--ink3); margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.tb-list { list-style: none; }
+.tb-list li {
+  font-size: 12px; color: var(--ink2);
+  padding: 3px 0 3px 16px;
+  position: relative; line-height: 1.55;
+}
+.tb-list li::before {
+  content: "→"; position: absolute; left: 0;
+  font-size: 10px; color: var(--ink4); top: 5px;
+}
+.tb-list li strong { color: var(--ink); font-weight: 500; }
+
+.output-box {
+  margin-top: 10px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.output-box .ob-label {
+  font-family: var(--mono);
+  font-size: 9px; letter-spacing: 0.08em;
+  display: block; margin-bottom: 2px; font-weight: 500;
+}
+
+.resource-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--paper2); border: 1px solid var(--line);
+  border-radius: 6px; padding: 4px 9px;
+  font-size: 11px; color: var(--ink2);
+  margin: 3px 3px 0 0;
+  text-decoration: none; cursor: default;
+}
+
+/* ===== KPI SECTION ===== */
+.kpi-section { padding: 0 32px 28px; }
+.section-heading {
+  font-size: 13px; font-weight: 700; color: var(--ink);
+  padding-bottom: 8px; border-bottom: 1.5px solid var(--line);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-eyebrow {
+  font-family: var(--mono); font-size: 9px;
+  letter-spacing: 0.12em; color: var(--ink3);
+  margin-bottom: 4px;
+}
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.kpi-card {
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 9px; padding: 12px 14px;
+}
+.kpi-lbl { font-size: 10px; color: var(--ink3); margin-bottom: 5px; }
+.kpi-in {
+  width: 100%; border: none; border-bottom: 1.5px solid var(--line);
+  background: transparent; font-family: var(--mono);
+  font-size: 17px; font-weight: 500;
+  color: var(--ink); padding: 2px 0;
+  outline: none; transition: border-color 0.2s;
+}
+.kpi-in:focus { border-color: var(--ink2); }
+.kpi-unit { font-size: 10px; color: var(--ink4); margin-top: 3px; }
+
+/* ===== RESOURCES SECTION ===== */
+.resources-section { padding: 0 32px 40px; }
+.resource-card {
+  background: #fff; border: 1px solid var(--line);
+  border-radius: 9px; padding: 13px 14px;
+  margin-bottom: 8px;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+.r-icon-box {
+  width: 34px; height: 34px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.r-name { font-size: 12px; font-weight: 500; margin-bottom: 2px; }
+.r-desc { font-size: 11px; color: var(--ink3); line-height: 1.5; }
+.r-badge {
+  font-size: 9px; padding: 2px 7px;
+  border-radius: 8px; font-family: var(--mono);
+  margin-top: 4px; display: inline-block;
+}
+.badge-free { background: var(--p1pale); color: var(--p1); }
+.badge-paid { background: var(--p3pale); color: var(--p3); }
+
+/* ===== WEEK NAV PILLS (inside content) ===== */
+.week-pills {
+  display: flex; gap: 6px;
+  padding: 14px 32px;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.week-pills::-webkit-scrollbar { display: none; }
+.week-pill {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px; font-weight: 500;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--ink3);
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.week-pill:hover { border-color: var(--ink3); color: var(--ink); }
+.week-pill.active { color: #fff; border-color: transparent; }
+
+/* ===== MOBILE OVERLAY ===== */
+.sidebar-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 150;
+  backdrop-filter: blur(2px);
+}
+.sidebar-overlay.open { display: block; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 680px) {
+  :root { --nav-w: 240px; }
+  .top-bar { display: flex; }
+  .sidebar {
+    position: fixed; left: calc(-1 * var(--nav-w));
+    top: 0; bottom: 0; z-index: 160;
+    transition: left 0.28s cubic-bezier(0.4,0,0.2,1);
+    padding-top: var(--safe-top);
+  }
+  .sidebar.open { left: 0; }
+  .phase-banner { padding: 24px 20px 18px; }
+  .week-header { padding: 12px 20px 10px; }
+  .tasks-list { padding: 12px 16px 20px; }
+  .week-pills { padding: 12px 16px; }
+  .kpi-section { padding: 0 16px 20px; }
+  .kpi-grid { grid-template-columns: 1fr; }
+  .resources-section { padding: 0 16px 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR (mobile only) -->
+<div class="top-bar">
+  <div class="top-bar-title">📊 転職ロードマップ</div>
+  <button class="hamburger" onclick="toggleSidebar()" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<div class="app">
+
+<!-- ===== SIDEBAR ===== -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-eyebrow">MARKETING CAREER</div>
+    <div class="brand-title">TikTok活用<br>転職ロードマップ</div>
+  </div>
+
+  <div class="sidebar-progress">
+    <div class="sp-label">OVERALL PROGRESS</div>
+    <div class="sp-bar"><div class="sp-fill" id="globalFill"></div></div>
+    <div class="sp-count" id="globalCount">0 / 0 タスク完了</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">PHASES</div>
+
+    <!-- Phase 1 nav -->
+    <div class="phase-nav">
+      <div class="phase-nav-header" id="pnav1" onclick="togglePhaseNav(1)">
+        <div class="phase-dot" style="background:var(--p1m)"></div>
+        <div class="phase-nav-label">Phase 1　6-7月</div>
+        <div class="phase-nav-arrow open" id="parrow1">▶</div>
+      </div>
+      <div class="week-nav-list open" id="wlist1">
+        <div class="week-nav-item active" id="wn-1-0" onclick="navigateTo(1,0)">
+          <div class="week-check-mini" id="wc-1-0"></div>W1-2　6月前半
+        </div>
+        <div class="week-nav-item" id="wn-1-1" onclick="navigateTo(1,1)">
+          <div class="week-check-mini" id="wc-1-1"></div>W3-4　6月後半
+        </div>
+        <div class="week-nav-item" id="wn-1-2" onclick="navigateTo(1,2)">
+          <div class="week-check-mini" id="wc-1-2"></div>W5-6　7月前半
+        </div>
+        <div class="week-nav-item" id="wn-1-3" onclick="navigateTo(1,3)">
+          <div class="week-check-mini" id="wc-1-3"></div>W7-8　7月後半
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 nav -->
+    <div class="phase-nav">
+      <div class="phase-nav-header" id="pnav2" onclick="togglePhaseNav(2)">
+        <div class="phase-dot" style="background:var(--p2m)"></div>
+        <div class="phase-nav-label">Phase 2　8-9月</div>
+        <div class="phase-nav-arrow" id="parrow2">▶</div>
+      </div>
+      <div class="week-nav-list" id="wlist2">
+        <div class="week-nav-item" id="wn-2-0" onclick="navigateTo(2,0)">
+          <div class="week-check-mini" id="wc-2-0"></div>W9-10　8月前半
+        </div>
+        <div class="week-nav-item" id="wn-2-1" onclick="navigateTo(2,1)">
+          <div class="week-check-mini" id="wc-2-1"></div>W11-12　8月後半
+        </div>
+        <div class="week-nav-item" id="wn-2-2" onclick="navigateTo(2,2)">
+          <div class="week-check-mini" id="wc-2-2"></div>W13-14　9月前半
+        </div>
+        <div class="week-nav-item" id="wn-2-3" onclick="navigateTo(2,3)">
+          <div class="week-check-mini" id="wc-2-3"></div>W15-16　9月後半
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3 nav -->
+    <div class="phase-nav">
+      <div class="phase-nav-header" id="pnav3" onclick="togglePhaseNav(3)">
+        <div class="phase-dot" style="background:var(--p3m)"></div>
+        <div class="phase-nav-label">Phase 3　10-11月</div>
+        <div class="phase-nav-arrow" id="parrow3">▶</div>
+      </div>
+      <div class="week-nav-list" id="wlist3">
+        <div class="week-nav-item" id="wn-3-0" onclick="navigateTo(3,0)">
+          <div class="week-check-mini" id="wc-3-0"></div>W17-18　10月前半
+        </div>
+        <div class="week-nav-item" id="wn-3-1" onclick="navigateTo(3,1)">
+          <div class="week-check-mini" id="wc-3-1"></div>W19-20　10月後半
+        </div>
+        <div class="week-nav-item" id="wn-3-2" onclick="navigateTo(3,2)">
+          <div class="week-check-mini" id="wc-3-2"></div>W21-22　11月前半
+        </div>
+        <div class="week-nav-item" id="wn-3-3" onclick="navigateTo(3,3)">
+          <div class="week-check-mini" id="wc-3-3"></div>W23-24　11月後半
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- ===== CONTENT ===== -->
+<div class="content-wrap" id="contentWrap">
+
+<!-- ==================== PHASE 1 ==================== -->
+<div class="page active" id="page-1">
+  <div class="phase-banner" data-phase-num="01" style="background:var(--p1);color:#fff;">
+    <div class="banner-eyebrow">PHASE 1　2025年6月〜7月</div>
+    <div class="banner-title">マーケティング基礎 ×<br>アカウント現状分析</div>
+    <div class="banner-sub">理論インプット + TikTok自己分析 + 競合調査 → ポートフォリオ素材化</div>
+    <div class="banner-chips">
+      <div class="banner-chip">📅 8週間</div>
+      <div class="banner-chip">📋 タスク <strong id="p1total">0</strong>項目</div>
+      <div class="banner-chip">🎯 成果物 <strong>4種類</strong></div>
+    </div>
+  </div>
+
+  <div class="week-pills" id="pills-1">
+    <div class="week-pill active" onclick="switchWeek(1,0)">W1-2　6月前半</div>
+    <div class="week-pill" onclick="switchWeek(1,1)">W3-4　6月後半</div>
+    <div class="week-pill" onclick="switchWeek(1,2)">W5-6　7月前半</div>
+    <div class="week-pill" onclick="switchWeek(1,3)">W7-8　7月後半</div>
+  </div>
+
+  <!-- W1-2 -->
+  <div class="week-section active" id="ws-1-0">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p1pale);color:var(--p1);">W1–2</span>
+      <span class="week-title">マーケ基礎インプット + アナリティクス初読み</span>
+      <span class="week-meta">6月第1〜2週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="1" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">マーケティングの4Pフレームワークを理解する</div>
+          <div class="task-tags"><span class="ttag ttag-learn">学習</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">具体的にやること</div>
+            <ul class="tb-list">
+              <li>Product / Price / Place / Promotion の各要素を参考書か動画でインプット</li>
+              <li>自分のTikTokに4Pを当てはめて書き出す（コンテンツ＝Product、無料＝Price など）</li>
+              <li>Notionに自分の言葉でまとめ、声に出して説明できるか確認する</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">参考リソース</div>
+            <span class="resource-pill">📘 グロービス学び放題（マーケティング基礎）</span>
+            <span class="resource-pill">▶️ YouTube：MBA式マーケ解説</span>
+          </div>
+          <div class="output-box" style="background:var(--p1pale);border:1px solid var(--p1l);">
+            <span class="ob-label" style="color:var(--p1);">OUTPUT</span>
+            4P分析シート（自アカウント版）→ ポートフォリオ素材
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="1" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">STPフレームワークを理解する</div>
+          <div class="task-tags"><span class="ttag ttag-learn">学習</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">具体的にやること</div>
+            <ul class="tb-list">
+              <li>Segmentation / Targeting / Positioning の意味と使い方を理解する</li>
+              <li>「自分のTikTokは誰に向けて何を届けているか」をSTPで整理する</li>
+              <li>競合アカウント2〜3件と自分のポジショニングを比較してみる</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p1pale);border:1px solid var(--p1l);">
+            <span class="ob-label" style="color:var(--p1);">OUTPUT</span>
+            STP分析シート（自アカウント版）
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="1" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">TikTokアナリティクスの全項目を読み込む</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">確認すべき指標</div>
+            <ul class="tb-list">
+              <li><strong>フォロワー属性</strong>：性別・年齢層・所在地・アクティブ時間帯</li>
+              <li><strong>コンテンツ指標</strong>：平均視聴時間・完全視聴率・いいね率・シェア率</li>
+              <li><strong>リーチ指標</strong>：おすすめ(FYP)流入 vs フォロワー流入の比率</li>
+              <li><strong>バズ動画TOP5</strong>：再生数・ER・投稿時間帯を記録する</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">アクション</div>
+            <ul class="tb-list">
+              <li>過去30日間のデータをスプレッドシートに記録してベースラインを作る</li>
+              <li>「なぜこの動画がバズったか」仮説を最低3つ書き出す</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p1pale);border:1px solid var(--p1l);">
+            <span class="ob-label" style="color:var(--p1);">OUTPUT</span>
+            現状分析スプレッドシート（ベースライン数値）
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="1" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">学習・実践記録のNotionページを作る</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">なぜ最初にやるか</div>
+            <ul class="tb-list">
+              <li>学んだことをその都度記録することで、面接で「具体的に話せる」状態になる</li>
+              <li>Notionで公開すればポートフォリオそのものになる</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">ページ構成例</div>
+            <ul class="tb-list">
+              <li>「今週学んだこと」日記形式（週1回更新）</li>
+              <li>「やってみた施策と結果」仮説→実施→数値変化の記録</li>
+              <li>「TikTok分析」フォロワー数・ER推移（月次グラフ）</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p1pale);border:1px solid var(--p1l);">
+            <span class="ob-label" style="color:var(--p1);">OUTPUT</span>
+            Notionポートフォリオページ（6月中に公開URLを取得）
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tasks-list -->
+  </div><!-- /ws-1-0 -->
+
+  <!-- W3-4 -->
+  <div class="week-section" id="ws-1-1">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p1pale);color:var(--p1);">W3–4</span>
+      <span class="week-title">カスタマージャーニー + ペルソナ作成</span>
+      <span class="week-meta">6月第3〜4週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="1" data-wid="1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">カスタマージャーニーを学び、自アカに当てはめる</div>
+          <div class="task-tags"><span class="ttag ttag-learn">学習</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">具体的にやること</div>
+            <ul class="tb-list">
+              <li>認知→興味→検索→比較→行動→リピートの各ステージを理解する</li>
+              <li>「視聴者がFYPで発見→いいね→フォロー→コメント」の自アカジャーニーをマッピング</li>
+              <li>各ステージの離脱ポイントを自分のデータから仮説立て（例：完全視聴率が低い＝興味→行動で離脱）</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p1pale);border:1px solid var(--p1l);">
+            <span class="ob-label" style="color:var(--p1);">OUTPUT</span>
+            TikTok版カスタマージャーニーマップ → ポートフォリオ必須素材
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="1" data-wid="1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">ターゲットペルソナを作成する</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">ペルソナに含める項目</div>
+            <ul class="tb-list">
+              <li><strong>基本属性</strong>：年齢・性別・職業・居住地（アナリティクスデータを根拠にする）</li>
+              <li><strong>行動特性</strong>：TikTokをいつ見るか / 何を求めてエンタメを見るか</li>
+              <li><strong>悩み・ニーズ</strong>：「何を解決したくて動画を見るか」</li>
+              <li><strong>メディア行動</strong>：他に見るSNS / よく使うアプリ</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">解像度を上げるポイント</div>
+            <ul class="tb-list">
+              <li>「なんとなく20代女性」ではなく「深夜にTikTokを見る、週3で外食する都内OL」まで落とし込む</li>
+              <li>実際のフォロワーコメントやDMを参考に"実在する一人"を想像する</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p1pale);border:1px solid var(--p1l);">
+            <span class="ob-label" style="color:var(--p1);">OUTPUT</span>
+            ペルソナシート（A4 1枚形式）→ ポートフォリオに掲載
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="1" data-wid="1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">GAIQの学習を開始する（Google スキルショップ）</div>
+          <div class="task-tags"><span class="ttag ttag-learn">学習</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">なぜGAIQか</div>
+            <ul class="tb-list">
+              <li>無料取得でき「データ分析できる人」と採用担当に認識してもらえる</li>
+              <li>Googleアナリティクスの知識はTikTok分析にも直接応用できる</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">進め方</div>
+            <ul class="tb-list">
+              <li>Google スキルショップ（skillshop.google.com）で無料コース受講（約6時間）</li>
+              <li>W3-4で開始 → W9-10（8月前半）での試験受験を目標にする</li>
+            </ul>
+          </div>
+          <span class="resource-pill">🎓 Google スキルショップ（完全無料）</span>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /ws-1-1 -->
+
+  <!-- W5-6 -->
+  <div class="week-section" id="ws-1-2">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p1pale);color:var(--p1);">W5–6</span>
+      <span class="week-title">競合分析 + SWOT分析</span>
+      <span class="week-meta">7月第1〜2週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="1" data-wid="2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">競合アカウント10件のベンチマーク分析をする</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">対象の選び方</div>
+            <ul class="tb-list">
+              <li>エンタメ・お笑いジャンルで1万〜100万フォロワーのアカウントを10件選定</li>
+              <li>自分より小さい・同規模・大きい規模をバランスよく混ぜる</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">分析する項目</div>
+            <ul class="tb-list">
+              <li>投稿頻度・投稿時間帯・動画尺の傾向</li>
+              <li>フォロワー数に対するいいね率（エンゲージメント率）を計算する</li>
+              <li>バズ動画TOP3のフック（冒頭3秒）の構成パターン</li>
+              <li>コメント欄から読み取れるフォロワーのニーズ</li>
+              <li>自分との差別化ポイント（強み・弱み）</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p1pale);border:1px solid var(--p1l);">
+            <span class="ob-label" style="color:var(--p1);">OUTPUT</span>
+            競合分析スプレッドシート → Phase 2戦略立案の根拠資料
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="1" data-wid="2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">SWOT分析：自アカウントの強み・弱みを整理する</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">各象限の記入例</div>
+            <ul class="tb-list">
+              <li><strong>S（強み）</strong>：4.2万フォロワーの実績 / 独自の笑いのセンス / 継続実績</li>
+              <li><strong>W（弱み）</strong>：投稿が不定期 / 顔出しなしで差別化が難しい</li>
+              <li><strong>O（機会）</strong>：TikTok拡散アルゴリズムの恩恵 / 企業案件需要の増加</li>
+              <li><strong>T（脅威）</strong>：類似コンテンツの増加 / アルゴリズム変更リスク</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p1pale);border:1px solid var(--p1l);">
+            <span class="ob-label" style="color:var(--p1);">OUTPUT</span>
+            SWOT分析シート → Phase 2の戦略設計に直結
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="1" data-wid="2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">GAIQ学習を継続する（週3時間目安）</div>
+          <div class="task-tags"><span class="ttag ttag-learn">学習</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <ul class="tb-list" style="margin-top:8px">
+            <li>「Googleアナリティクス4 基礎」コースを完了させる</li>
+            <li>自分のTikTokと対応させながら学ぶ（例：セッション → 再生数、直帰率 → 完全視聴率）</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /ws-1-2 -->
+
+  <!-- W7-8 -->
+  <div class="week-section" id="ws-1-3">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p1pale);color:var(--p1);">W7–8</span>
+      <span class="week-title">Phase 1 成果物まとめ + Phase 2 準備</span>
+      <span class="week-meta">7月第3〜4週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="1" data-wid="3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">Phase 1の成果をNotionにまとめポートフォリオ化する</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">掲載すべき内容</div>
+            <ul class="tb-list">
+              <li>ペルソナシート・4P/STP分析シート・競合分析の要約（表形式）</li>
+              <li>「この分析から導いた仮説」を自分の言葉で記載する</li>
+              <li>現状KPI数値（フォロワー数・ER・再生数）をグラフで可視化</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">面接での使い方</div>
+            <ul class="tb-list">
+              <li>「未経験ですが、こういう分析をしてきました」とURLを見せる</li>
+              <li>「Phase 2でこういう施策を打ちます」と繋げて語ると説得力が増す</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p1pale);border:1px solid var(--p1l);">
+            <span class="ob-label" style="color:var(--p1);">OUTPUT</span>
+            公開Notionページ（URL付き）→ 履歴書・職務経歴書に掲載可能
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="1" data-wid="3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">Phase 2に向けたコンテンツ戦略の仮説を立てる</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">具体的に書き出すこと</div>
+            <ul class="tb-list">
+              <li>「この分析から○○な動画を週○本投稿すれば、ERが上がるはず」という仮説</li>
+              <li>試したいA/Bテストのアイデアを3つ以上</li>
+              <li>Phase 2で達成したい数値目標（例：ER 5%以上 / 月間フォロワー増 +500人）</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p1pale);border:1px solid var(--p1l);">
+            <span class="ob-label" style="color:var(--p1);">OUTPUT</span>
+            Phase 2 戦略ドキュメントのドラフト
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="1" data-wid="3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">Phase 1の振り返りと自己評価をする</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <ul class="tb-list" style="margin-top:8px">
+            <li>「できたこと・できなかったこと」を率直に書き出す</li>
+            <li>学んだマーケ用語を10個リストアップし、自分の言葉で説明できるか確認する</li>
+            <li>Phase 2に向けて追加・修正するタスクがあれば更新する</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /ws-1-3 -->
+
+  <!-- KPI Section -->
+  <div class="kpi-section">
+    <div class="section-eyebrow">KPI TRACKER</div>
+    <div class="section-heading" style="border-color:var(--p1l)">📊 ベースライン数値を記録する</div>
+    <p style="font-size:12px;color:var(--ink3);margin-bottom:14px;">Phase 1開始時点の数値を入力して保存。Phase 2以降の「変化量」がポートフォリオの証拠になります。</p>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-lbl">フォロワー数</div><input class="kpi-in" value="42,000"><div class="kpi-unit">人</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">平均エンゲージメント率</div><input class="kpi-in" placeholder="例：3.5"><div class="kpi-unit">%</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">平均再生数（直近30日）</div><input class="kpi-in" placeholder="例：12000"><div class="kpi-unit">回 / 動画</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">月間投稿数</div><input class="kpi-in" placeholder="例：4"><div class="kpi-unit">本 / 月</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">平均完全視聴率</div><input class="kpi-in" placeholder="例：28"><div class="kpi-unit">%</div></div>
+      <div class="kpi-card"><div class="kpi-lbl">FYP流入率</div><input class="kpi-in" placeholder="例：75"><div class="kpi-unit">%</div></div>
+    </div>
+  </div>
+
+  <!-- Resources Section -->
+  <div class="resources-section">
+    <div class="section-eyebrow">LEARNING RESOURCES</div>
+    <div class="section-heading" style="border-color:var(--p1l)">📚 Phase 1 おすすめリソース</div>
+    <div class="resource-card">
+      <div class="r-icon-box" style="background:var(--p1pale)">📘</div>
+      <div><div class="r-name">グロービス学び放題</div><div class="r-desc">4P・STP・マーケティング基礎が体系的に学べる動画コース。通勤中でも視聴可。</div><span class="r-badge badge-paid">月額 2,000円〜</span></div>
+    </div>
+    <div class="resource-card">
+      <div class="r-icon-box" style="background:var(--p2pale)">🌐</div>
+      <div><div class="r-name">HubSpot マーケティング認定資格</div><div class="r-desc">コンテンツマーケ・インバウンドの基礎をカバー。修了証が発行され、ポートフォリオに追加できる。</div><span class="r-badge badge-free">完全無料</span></div>
+    </div>
+    <div class="resource-card">
+      <div class="r-icon-box" style="background:var(--p3pale)">🎓</div>
+      <div><div class="r-name">Google スキルショップ（GAIQ対策）</div><div class="r-desc">Google アナリティクス個人認定資格の公式コース。試験も無料で受験可能。</div><span class="r-badge badge-free">完全無料</span></div>
+    </div>
+    <div class="resource-card">
+      <div class="r-icon-box" style="background:var(--p1pale)">📗</div>
+      <div><div class="r-name">「USJを劇的に変えた、たった1つの考え方」（森岡毅）</div><div class="r-desc">STPの実践例が読みやすく理解できる名著。面接でも話のネタになる。</div><span class="r-badge badge-paid">書籍 約1,500円</span></div>
+    </div>
+  </div>
+
+</div><!-- /page-1 -->
+
+
+<!-- ==================== PHASE 2 ==================== -->
+<div class="page" id="page-2">
+  <div class="phase-banner" data-phase-num="02" style="background:var(--p2);color:#fff;">
+    <div class="banner-eyebrow">PHASE 2　2025年8月〜9月</div>
+    <div class="banner-title">コンテンツ戦略の設計 ×<br>PDCA運用の型化</div>
+    <div class="banner-sub">「なんとなく投稿」から「仮説→実施→検証→改善」サイクルへ転換する</div>
+    <div class="banner-chips">
+      <div class="banner-chip">📅 8週間</div>
+      <div class="banner-chip">📋 タスク <strong id="p2total">0</strong>項目</div>
+      <div class="banner-chip">🎯 成果物 <strong>3種類</strong></div>
+    </div>
+  </div>
+
+  <div class="week-pills" id="pills-2">
+    <div class="week-pill active" onclick="switchWeek(2,0)">W9-10　8月前半</div>
+    <div class="week-pill" onclick="switchWeek(2,1)">W11-12　8月後半</div>
+    <div class="week-pill" onclick="switchWeek(2,2)">W13-14　9月前半</div>
+    <div class="week-pill" onclick="switchWeek(2,3)">W15-16　9月後半</div>
+  </div>
+
+  <!-- W9-10 -->
+  <div class="week-section active" id="ws-2-0">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p2pale);color:var(--p2);">W9–10</span>
+      <span class="week-title">コンテンツ戦略設計 + 定期投稿スタート</span>
+      <span class="week-meta">8月第1〜2週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="2" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">コンテンツ戦略ドキュメントを完成させる</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">ドキュメントに含める内容</div>
+            <ul class="tb-list">
+              <li><strong>ターゲット</strong>：Phase 1で作ったペルソナを再確認・更新する</li>
+              <li><strong>コンセプト</strong>：「このアカウントは何者で、何を届けるか」を一言で定義</li>
+              <li><strong>コンテンツミックス</strong>：バズ狙い / 固定ファン向け / 情報系 などの比率を決める</li>
+              <li><strong>投稿ルール</strong>：週何本・何時に・動画尺・ハッシュタグ戦略</li>
+              <li><strong>KPI目標</strong>：Phase 2終了時（9月末）に達成したい数値</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p2pale);border:1px solid var(--p2l);">
+            <span class="ob-label" style="color:var(--p2);">OUTPUT</span>
+            コンテンツ戦略ドキュメント（Notion or Googleドキュメント）
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="2" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">週3本以上の定期投稿スケジュールを確立する</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">定期化のポイント</div>
+            <ul class="tb-list">
+              <li>撮影・編集・投稿を曜日で固定する（例：月水金に投稿、撮影は週末まとめて）</li>
+              <li>コンテンツカレンダーをNotionかGoogleカレンダーで管理する</li>
+              <li>ストックを2〜3本作っておくとサボり防止になる</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">なぜ週3本か</div>
+            <ul class="tb-list">
+              <li>TikTokのアルゴリズムは継続的な投稿を好む（＝フォロワーに届きやすくなる）</li>
+              <li>面接で「週3本×8週間＝24本の投稿実績」と具体的に語れるようになる</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p2pale);border:1px solid var(--p2l);">
+            <span class="ob-label" style="color:var(--p2);">OUTPUT</span>
+            コンテンツカレンダー（8〜9月分）
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="2" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">週次KPI記録シートを作り、計測を開始する</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">記録する指標（毎週固定曜日に記録）</div>
+            <ul class="tb-list">
+              <li>フォロワー数・週間フォロワー増減数</li>
+              <li>平均再生数・最高再生数・最低再生数</li>
+              <li>エンゲージメント率（いいね+コメント+シェア / 再生数）</li>
+              <li>完全視聴率・平均視聴時間</li>
+              <li>投稿本数（計画通りだったか）</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p2pale);border:1px solid var(--p2l);">
+            <span class="ob-label" style="color:var(--p2);">OUTPUT</span>
+            KPIトラッカースプレッドシート（Phase 3の実績レポートに直結）
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="2" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">GAIQ試験を受験し取得する</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <ul class="tb-list" style="margin-top:8px">
+            <li>Google スキルショップで受験（無料・オンライン）</li>
+            <li>合格したら証明書をNotionポートフォリオに掲載する</li>
+            <li>不合格でも1日後に再受験可能なので気軽に挑戦してOK</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- W11-12 -->
+  <div class="week-section" id="ws-2-1">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p2pale);color:var(--p2);">W11–12</span>
+      <span class="week-title">A/Bテスト設計 + 初回PDCAサイクル</span>
+      <span class="week-meta">8月第3〜4週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="2" data-wid="1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">A/Bテストを設計・実施する（第1回）</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">テストのアイデア例</div>
+            <ul class="tb-list">
+              <li><strong>サムネイル</strong>：テキストあり vs テキストなし で再生率を比較</li>
+              <li><strong>フック（冒頭3秒）</strong>：質問形式 vs 衝撃映像 でどちらが視聴維持率が高いか</li>
+              <li><strong>投稿時間帯</strong>：朝7時 vs 夜22時 でFYP流入率を比較</li>
+              <li><strong>動画尺</strong>：15秒 vs 45秒 で完全視聴率を比較</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">テストの進め方</div>
+            <ul class="tb-list">
+              <li>1回のテストで変える変数は必ず1つだけにする</li>
+              <li>最低3投稿ずつ比較してから判断する（サンプル数が少ないと誤差が出る）</li>
+              <li>結果をスプレッドシートに記録し、勝ち負けの理由を言語化する</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p2pale);border:1px solid var(--p2l);">
+            <span class="ob-label" style="color:var(--p2);">OUTPUT</span>
+            A/Bテスト記録シート → 「仮説思考」の証拠としてポートフォリオに掲載
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="2" data-wid="1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">8月前半の投稿を振り返りPDCAをまわす</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">振り返りの型（毎月末に実施）</div>
+            <ul class="tb-list">
+              <li><strong>P（計画）</strong>：今月はどんな仮説を立てて何を試したか</li>
+              <li><strong>D（実施）</strong>：実際に何本・どんな内容を投稿したか</li>
+              <li><strong>C（確認）</strong>：KPIはどう変化したか（数値で記録）</li>
+              <li><strong>A（改善）</strong>：次の月に変えること・続けることは何か</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p2pale);border:1px solid var(--p2l);">
+            <span class="ob-label" style="color:var(--p2);">OUTPUT</span>
+            月次PDCAレポート（面接で「マーケターらしい思考」を示す最重要資料）
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- W13-14 -->
+  <div class="week-section" id="ws-2-2">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p2pale);color:var(--p2);">W13–14</span>
+      <span class="week-title">バズ分析 + 第2回A/Bテスト</span>
+      <span class="week-meta">9月第1〜2週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="2" data-wid="2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">バズった動画・しなかった動画の勝敗要因を言語化する</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">分析の視点</div>
+            <ul class="tb-list">
+              <li>バズ動画と不振動画で「フック・テンポ・オチ・長さ・投稿時間」を比較する</li>
+              <li>コメント欄の反応（笑い・共感・質問・シェア理由）を分類してパターンを探す</li>
+              <li>「この要素があるとバズる / これがあるとバズらない」という自分なりのルールを作る</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p2pale);border:1px solid var(--p2l);">
+            <span class="ob-label" style="color:var(--p2);">OUTPUT</span>
+            「バズの法則」まとめドキュメント（自分独自の知見 = 強力なポートフォリオ素材）
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="2" data-wid="2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">A/Bテスト第2回を実施する</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <ul class="tb-list" style="margin-top:8px">
+            <li>第1回の結果を踏まえて新しい変数でテストを設計する</li>
+            <li>結果を記録シートに追記し、第1回との比較もまとめる</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="2" data-wid="2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">Meta認定資格 or Webマーケティング検定の学習を開始する</div>
+          <div class="task-tags"><span class="ttag ttag-learn">学習</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">どちらを選ぶか</div>
+            <ul class="tb-list">
+              <li><strong>Meta認定資格</strong>：SNS広告・Facebook/Instagramマーケに強みを持ちたい場合</li>
+              <li><strong>Webマーケティング検定</strong>：SEO・コンテンツ・Web全般をカバーしたい場合</li>
+              <li>SNS特化でいくならMeta、総合マーケターを目指すならWeb検定がおすすめ</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- W15-16 -->
+  <div class="week-section" id="ws-2-3">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p2pale);color:var(--p2);">W15–16</span>
+      <span class="week-title">9月振り返り + Phase 3 準備</span>
+      <span class="week-meta">9月第3〜4週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="2" data-wid="3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">Phase 2 の月次PDCAレポートを完成させる</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">レポートに含める内容</div>
+            <ul class="tb-list">
+              <li>8〜9月のKPI推移グラフ（フォロワー数・ER・再生数の変化）</li>
+              <li>実施した施策一覧と各施策の効果（数値で記載）</li>
+              <li>A/Bテストの結果まとめ</li>
+              <li>「バズの法則」から導いた自分なりの結論</li>
+              <li>Phase 3に向けた改善点・課題</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p2pale);border:1px solid var(--p2l);">
+            <span class="ob-label" style="color:var(--p2);">OUTPUT</span>
+            PDCAレポート（仮説〜結果の記録）→ 面接で「マーケ思考の実証」として提示
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="2" data-wid="3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">NotionポートフォリオにPhase 2の成果を追記する</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <ul class="tb-list" style="margin-top:8px">
+            <li>KPI推移グラフ・A/Bテスト結果・バズ分析をページに追加する</li>
+            <li>「8月開始時→9月末」のビフォーアフター数値をわかりやすく記載する</li>
+            <li>Phase 3でやることの予告を書いておくと「計画性がある人」と思われる</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Resources -->
+  <div class="resources-section">
+    <div class="section-eyebrow">LEARNING RESOURCES</div>
+    <div class="section-heading" style="border-color:var(--p2l)">📚 Phase 2 おすすめリソース</div>
+    <div class="resource-card">
+      <div class="r-icon-box" style="background:var(--p2pale)">📊</div>
+      <div><div class="r-name">「コンテンツマーケティング入門」（書籍）</div><div class="r-desc">コンテンツの企画・設計・PDCA運用の考え方を体系的に学べる。Phase 2の思考の土台になる。</div><span class="r-badge badge-paid">書籍 約1,600円</span></div>
+    </div>
+    <div class="resource-card">
+      <div class="r-icon-box" style="background:var(--p1pale)">🎓</div>
+      <div><div class="r-name">Meta Blueprint（Meta公式学習プラットフォーム）</div><div class="r-desc">Facebook・Instagramの広告・マーケ知識を体系的に学べる。Meta認定資格の公式対策にもなる。</div><span class="r-badge badge-free">基礎コースは無料</span></div>
+    </div>
+    <div class="resource-card">
+      <div class="r-icon-box" style="background:var(--p3pale)">▶️</div>
+      <div><div class="r-name">TikTok for Business（公式ブログ・事例集）</div><div class="r-desc">TikTokが公式に発信するマーケ事例。「どんな施策が効果的か」の最新情報を無料で得られる。</div><span class="r-badge badge-free">完全無料</span></div>
+    </div>
+  </div>
+
+</div><!-- /page-2 -->
+
+
+<!-- ==================== PHASE 3 ==================== -->
+<div class="page" id="page-3">
+  <div class="phase-banner" data-phase-num="03" style="background:var(--p3);color:#fff;">
+    <div class="banner-eyebrow">PHASE 3　2025年10月〜11月</div>
+    <div class="banner-title">実績の数値化 ×<br>ポートフォリオ完成</div>
+    <div class="banner-sub">「やった」ではなく「こう変わった」を数値で語れる状態にして転職活動に備える</div>
+    <div class="banner-chips">
+      <div class="banner-chip">📅 8週間</div>
+      <div class="banner-chip">📋 タスク <strong id="p3total">0</strong>項目</div>
+      <div class="banner-chip">🎯 成果物 <strong>4種類</strong></div>
+    </div>
+  </div>
+
+  <div class="week-pills" id="pills-3">
+    <div class="week-pill active" onclick="switchWeek(3,0)">W17-18　10月前半</div>
+    <div class="week-pill" onclick="switchWeek(3,1)">W19-20　10月後半</div>
+    <div class="week-pill" onclick="switchWeek(3,2)">W21-22　11月前半</div>
+    <div class="week-pill" onclick="switchWeek(3,3)">W23-24　11月後半</div>
+  </div>
+
+  <!-- W17-18 -->
+  <div class="week-section active" id="ws-3-0">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p3pale);color:var(--p3);">W17–18</span>
+      <span class="week-title">KPI実績整理 + クロスメディア展開開始</span>
+      <span class="week-meta">10月第1〜2週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="3" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">施策前後のKPI変化をビフォーアフターで整理する</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">整理する内容</div>
+            <ul class="tb-list">
+              <li><strong>期間</strong>：Phase 1開始（6月初）→ Phase 2終了（9月末）の4ヶ月間</li>
+              <li><strong>比較する指標</strong>：フォロワー数・平均ER・平均再生数・月間投稿数・完全視聴率</li>
+              <li>「6月時点 → 9月末時点」で各指標が何%改善したかを計算する</li>
+              <li>施策と数値変化の因果関係を「施策→結果」の形式で記述する</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">ポートフォリオでの見せ方</div>
+            <ul class="tb-list">
+              <li>「エンゲージメント率を3.2% → 5.8%に改善（+81%）」のような記載が理想</li>
+              <li>グラフで可視化すると面接官に一目で伝わる</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p3pale);border:1px solid var(--p3l);">
+            <span class="ob-label" style="color:var(--p3);">OUTPUT</span>
+            実績レポート（数値入り）→ 面接での最強の武器
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="3" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">Instagram または X（Twitter）への展開を開始する</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">なぜクロスメディア展開をするか</div>
+            <ul class="tb-list">
+              <li>「TikTokだけでなく複数プラットフォームを管理できる」という実績になる</li>
+              <li>各プラットフォームの特性の違いを体感できる（面接で語れるネタになる）</li>
+              <li>マーケターの実務では複数SNS運用が当たり前のため、経験値になる</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">どちらを選ぶか</div>
+            <ul class="tb-list">
+              <li><strong>Instagram</strong>：エンタメ系との親和性が高く、ビジュアルを活かせる</li>
+              <li><strong>X（Twitter）</strong>：テキストで「思考の深さ」を見せやすく、マーケ界隈との繋がりが作れる</li>
+              <li>余裕があれば両方やってみるのが理想的</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p3pale);border:1px solid var(--p3l);">
+            <span class="ob-label" style="color:var(--p3);">OUTPUT</span>
+            各SNSアカウント開設・運用実績（プロフィールURLをポートフォリオに掲載）
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="3" data-wid="0">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">Webマーケティング検定 or Meta認定資格を取得する</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <ul class="tb-list" style="margin-top:8px">
+            <li>Phase 2（W13-14）で開始した学習を完了させ試験を受験する</li>
+            <li>合格証明書をNotionポートフォリオとLinkedInに掲載する</li>
+            <li>GAIQと合わせて2資格以上あると「学習意欲がある人」として評価される</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- W19-20 -->
+  <div class="week-section" id="ws-3-1">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p3pale);color:var(--p3);">W19–20</span>
+      <span class="week-title">ポートフォリオ構築 + 職務経歴書ドラフト</span>
+      <span class="week-meta">10月第3〜4週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="3" data-wid="1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">Notionでポートフォリオページを完成・公開する</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">ポートフォリオの構成</div>
+            <ul class="tb-list">
+              <li><strong>自己紹介</strong>：どんな人で、なぜマーケターを目指しているか（1〜2段落）</li>
+              <li><strong>TikTok運用実績</strong>：フォロワー数推移・KPI変化グラフ・施策サマリー</li>
+              <li><strong>分析資料</strong>：ペルソナシート・競合分析・SWOT分析</li>
+              <li><strong>PDCAレポート</strong>：仮説→実施→結果→改善の記録</li>
+              <li><strong>習得スキル・資格</strong>：GAIQ・Meta認定など</li>
+              <li><strong>今後やりたいこと</strong>：マーケターとして挑戦したい領域</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">差別化のポイント</div>
+            <ul class="tb-list">
+              <li>数値は必ず入れる（「フォロワー4.2万人」ではなく「施策後ER +2.6pt改善」）</li>
+              <li>「なぜそうしたか」の思考プロセスを書く（結果だけ書かない）</li>
+              <li>読みやすさ・デザインにも気を配る（マーケ職は見た目の感度も見られる）</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p3pale);border:1px solid var(--p3l);">
+            <span class="ob-label" style="color:var(--p3);">OUTPUT</span>
+            公開Notionポートフォリオ（URL）→ 履歴書・職務経歴書・面接で提示
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="3" data-wid="1">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">職務経歴書のドラフトを作成する</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">TikTok運用の書き方（重要）</div>
+            <ul class="tb-list">
+              <li>「TikTokアカウント運用（2024年〜）フォロワー4.2万人」だけでは弱い</li>
+              <li>「マーケティング戦略（STP分析・競合分析）を策定し、週3本の定期投稿体制を確立。A/Bテストによりエンゲージメント率を○%改善」のように書く</li>
+              <li>使ったフレームワーク・実施した施策・数値結果の3点セットで書くのがポイント</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p3pale);border:1px solid var(--p3l);">
+            <span class="ob-label" style="color:var(--p3);">OUTPUT</span>
+            職務経歴書ドラフト → 11月末に完成版に仕上げる
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- W21-22 -->
+  <div class="week-section" id="ws-3-2">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p3pale);color:var(--p3);">W21–22</span>
+      <span class="week-title">マーケ界隈ネットワーキング + 求人リサーチ</span>
+      <span class="week-meta">11月第1〜2週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="3" data-wid="2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">マーケ系勉強会・イベントに参加する（月2回以上）</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">参加するイベントの探し方</div>
+            <ul class="tb-list">
+              <li>connpass / Doorkeeper でマーケティング系イベントを検索する</li>
+              <li>「SNSマーケ」「コンテンツマーケ」「デジタルマーケ」などで絞り込む</li>
+              <li>オンライン開催のものなら地方在住でも参加しやすい</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">イベント参加で得られること</div>
+            <ul class="tb-list">
+              <li>業界トレンドのインプット（面接のネタになる）</li>
+              <li>マーケ職の人とのネットワーク（内部情報・OB訪問のきっかけ）</li>
+              <li>「社外のマーケ知識も学んでいる」という行動実績</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="3" data-wid="2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">応募したい企業・職種のリサーチをする</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">リサーチの切り口</div>
+            <ul class="tb-list">
+              <li>「SNSマーケター」「コンテンツマーケター」「デジタルマーケター」で求人検索する</li>
+              <li>未経験OKの求人に絞って、求められるスキルセットを把握する</li>
+              <li>志望企業のSNS運用・マーケ戦略を分析してみる（面接で話せるネタになる）</li>
+              <li>年収・働き方・業種の優先順位を自分の中で決めておく</li>
+            </ul>
+          </div>
+          <div class="output-box" style="background:var(--p3pale);border:1px solid var(--p3l);">
+            <span class="ob-label" style="color:var(--p3);">OUTPUT</span>
+            志望企業リスト + 各社のマーケ施策メモ（面接対策に直結）
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="3" data-wid="2">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">LinkedInのプロフィールを整備する</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <ul class="tb-list" style="margin-top:8px">
+            <li>プロフィール写真・ヘッドライン・概要欄を整える</li>
+            <li>TikTok運用実績・取得資格をプロフィールに記載する</li>
+            <li>ポートフォリオのNotionページURLを掲載する</li>
+            <li>マーケ職の人をフォローして業界ネットワークを広げる</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- W23-24 -->
+  <div class="week-section" id="ws-3-3">
+    <div class="week-header">
+      <span class="week-badge" style="background:var(--p3pale);color:var(--p3);">W23–24</span>
+      <span class="week-title">書類完成 + 面接準備 + Phase 3 総仕上げ</span>
+      <span class="week-meta">11月第3〜4週</span>
+    </div>
+    <div class="tasks-list">
+
+      <div class="task-card" data-pid="3" data-wid="3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">職務経歴書を完成版に仕上げる</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <ul class="tb-list" style="margin-top:8px">
+            <li>W19-20のドラフトに10〜11月の実績数値を反映させる</li>
+            <li>第三者（転職エージェント・友人・家族）に読んでもらいフィードバックをもらう</li>
+            <li>「なぜマーケターを目指したか」の志望動機を自分の言葉で書く</li>
+          </ul>
+          <div class="output-box" style="background:var(--p3pale);border:1px solid var(--p3l);">
+            <span class="ob-label" style="color:var(--p3);">OUTPUT</span>
+            職務経歴書 完成版 → 12月から即エントリー可能な状態に
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="3" data-wid="3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">想定面接Q&Aを作成し声に出して練習する</div>
+          <div class="task-tags"><span class="ttag ttag-action">実践</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <div class="tb-section">
+            <div class="tb-label">必ず準備すべき質問</div>
+            <ul class="tb-list">
+              <li>「未経験なのになぜマーケティング職を希望するのですか？」</li>
+              <li>「TikTok運用で最も工夫したことを教えてください」（数値・施策・結果をSTAR形式で）</li>
+              <li>「失敗した施策と、そこから学んだことは何ですか？」</li>
+              <li>「弊社のSNSマーケに対して、どんな改善提案ができますか？」</li>
+              <li>「5年後にどんなマーケターになりたいですか？」</li>
+            </ul>
+          </div>
+          <div class="tb-section">
+            <div class="tb-label">練習の方法</div>
+            <ul class="tb-list">
+              <li>声に出して1分以内で答える練習をする（文字で書くだけでは不十分）</li>
+              <li>スマホで録画して自分の話し方を客観的に確認する</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-card" data-pid="3" data-wid="3">
+        <div class="task-header" onclick="toggleTask(this)">
+          <div class="task-check" onclick="toggleCheck(event,this)"></div>
+          <div class="task-label">ポートフォリオを最終確認し仕上げる</div>
+          <div class="task-tags"><span class="ttag ttag-output">成果物</span></div>
+          <div class="expand-btn">▾</div>
+        </div>
+        <div class="task-body">
+          <ul class="tb-list" style="margin-top:8px">
+            <li>スマホ・PCどちらで見ても読みやすいか確認する</li>
+            <li>数値・グラフが最新のものに更新されているか確認する</li>
+            <li>誤字脱字・リンク切れがないか最終チェックする</li>
+            <li>第三者に見せて「わかりやすいか」確認してもらう</li>
+          </ul>
+          <div class="output-box" style="background:var(--p3pale);border:1px solid var(--p3l);">
+            <span class="ob-label" style="color:var(--p3);">OUTPUT</span>
+            ポートフォリオ完成版 → 12月の転職活動で即戦力として提示できる状態
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Resources -->
+  <div class="resources-section">
+    <div class="section-eyebrow">LEARNING RESOURCES</div>
+    <div class="section-heading" style="border-color:var(--p3l)">📚 Phase 3 おすすめリソース</div>
+    <div class="resource-card">
+      <div class="r-icon-box" style="background:var(--p3pale)">💼</div>
+      <div><div class="r-name">Green / Wantedly（マーケ職求人）</div><div class="r-desc">IT・Web系マーケ職の求人が豊富。未経験OKの求人を探しながら、求められるスキルを把握するのにも使える。</div><span class="r-badge badge-free">無料</span></div>
+    </div>
+    <div class="resource-card">
+      <div class="r-icon-box" style="background:var(--p2pale)">🤝</div>
+      <div><div class="r-name">connpass / Doorkeeper（勉強会プラットフォーム）</div><div class="r-desc">マーケ系勉強会・イベントを探せる。参加することで業界ネットワークと最新トレンドを同時に得られる。</div><span class="r-badge badge-free">多くが無料</span></div>
+    </div>
+    <div class="resource-card">
+      <div class="r-icon-box" style="background:var(--p1pale)">📝</div>
+      <div><div class="r-name">「マーケティング思考力トレーニング」（書籍）</div><div class="r-desc">「なぜ？」を繰り返して本質的な課題を見つける思考法を身につける。面接の思考プロセスの質が上がる。</div><span class="r-badge badge-paid">書籍 約1,700円</span></div>
+    </div>
+  </div>
+
+</div><!-- /page-3 -->
+
+</div><!-- /content-wrap -->
+</div><!-- /app -->
+
+<script>
+// ===================== STATE =====================
+const state = {
+  activePage: 1,
+  activeWeek: { 1: 0, 2: 0, 3: 0 },
+  checked: {},   // key: "pid-cardIndex" → bool
+};
+
+// ===================== INIT =====================
+document.addEventListener('DOMContentLoaded', () => {
+  updateAllCounts();
+  updateGlobalProgress();
+  updateWeekNavIndicators();
+  styleActivePills();
+});
+
+// ===================== NAV =====================
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+
+function togglePhaseNav(phase) {
+  const list = document.getElementById('wlist' + phase);
+  const arrow = document.getElementById('parrow' + phase);
+  list.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+function navigateTo(phase, week) {
+  // Show correct page
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + phase).classList.add('active');
+
+  // Activate week section
+  switchWeek(phase, week);
+
+  // Update sidebar nav items
+  document.querySelectorAll('.week-nav-item').forEach(el => el.classList.remove('active'));
+  const navItem = document.getElementById('wn-' + phase + '-' + week);
+  if (navItem) navItem.classList.add('active');
+
+  // Update phase header
+  document.querySelectorAll('.phase-nav-header').forEach(h => h.classList.remove('active-phase'));
+  document.getElementById('pnav' + phase).classList.add('active-phase');
+
+  state.activePage = phase;
+  state.activeWeek[phase] = week;
+
+  // Scroll content to top
+  document.getElementById('contentWrap').scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Close sidebar on mobile
+  if (window.innerWidth <= 680) toggleSidebar();
+}
+
+// ===================== WEEK PILLS =====================
+function switchWeek(phase, weekIdx) {
+  // Hide all week sections for this phase
+  document.querySelectorAll('#page-' + phase + ' .week-section')
+    .forEach(s => s.classList.remove('active'));
+  document.getElementById('ws-' + phase + '-' + weekIdx).classList.add('active');
+
+  // Update pills
+  const pills = document.querySelectorAll('#pills-' + phase + ' .week-pill');
+  pills.forEach((p, i) => p.classList.toggle('active', i === weekIdx));
+
+  // Update sidebar nav
+  document.querySelectorAll('.week-nav-item').forEach(el => el.classList.remove('active'));
+  const navItem = document.getElementById('wn-' + phase + '-' + weekIdx);
+  if (navItem) navItem.classList.add('active');
+
+  state.activeWeek[phase] = weekIdx;
+  styleActivePills();
+}
+
+// ===================== TASK EXPAND =====================
+function toggleTask(header) {
+  const body = header.nextElementSibling;
+  const btn = header.querySelector('.expand-btn');
+  const isOpen = body.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+}
+
+// ===================== TASK CHECK =====================
+function toggleCheck(e, el) {
+  e.stopPropagation();
+  const card = el.closest('.task-card');
+  const label = card.querySelector('.task-label');
+  const pid = card.dataset.pid;
+  const cards = [...document.querySelectorAll('.task-card[data-pid="' + pid + '"]')];
+  const cardIdx = pid + '-' + cards.indexOf(card);
+
+  const isDone = state.checked[cardIdx] = !state.checked[cardIdx];
+  el.classList.toggle('done', isDone);
+  label.classList.toggle('done', isDone);
+
+  // Set check color based on phase
+  const colors = { '1': 'var(--p1m)', '2': 'var(--p2m)', '3': 'var(--p3m)' };
+  el.style.background = isDone ? colors[pid] || 'var(--ink2)' : '';
+
+  updateAllCounts();
+  updateGlobalProgress();
+  updateWeekNavIndicators();
+}
+
+// ===================== COUNTS =====================
+function updateAllCounts() {
+  [1, 2, 3].forEach(pid => {
+    const all = document.querySelectorAll('.task-card[data-pid="' + pid + '"]');
+    const done = [...all].filter((c, i) => state.checked[pid + '-' + i]).length;
+    const el = document.getElementById('p' + pid + 'total');
+    if (el) el.textContent = all.length;
+  });
+}
+
+function updateGlobalProgress() {
+  const allCards = document.querySelectorAll('.task-card');
+  const total = allCards.length;
+  let done = 0;
+  allCards.forEach((card, i) => {
+    const pid = card.dataset.pid;
+    const cards = [...document.querySelectorAll('.task-card[data-pid="' + pid + '"]')];
+    const key = pid + '-' + cards.indexOf(card);
+    if (state.checked[key]) done++;
+  });
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+  document.getElementById('globalFill').style.width = pct + '%';
+  document.getElementById('globalCount').textContent = done + ' / ' + total + ' タスク完了';
+}
+
+function updateWeekNavIndicators() {
+  [1, 2, 3].forEach(pid => {
+    [0, 1, 2, 3].forEach(wid => {
+      const weekCards = [...document.querySelectorAll('.task-card[data-pid="' + pid + '"][data-wid="' + wid + '"]')];
+      const pCards = [...document.querySelectorAll('.task-card[data-pid="' + pid + '"]')];
+      const done = weekCards.filter(c => state.checked[pid + '-' + pCards.indexOf(c)]).length;
+      const indicator = document.getElementById('wc-' + pid + '-' + wid);
+      if (!indicator) return;
+      indicator.classList.remove('partial', 'complete');
+      if (done === weekCards.length && weekCards.length > 0) {
+        indicator.classList.add('complete');
+        indicator.textContent = '✓';
+      } else if (done > 0) {
+        indicator.classList.add('partial');
+        indicator.textContent = '';
+      } else {
+        indicator.textContent = '';
+      }
+    });
+  });
+}
+
+// ===================== PILL COLORS =====================
+function styleActivePills() {
+  const colors = { '1': 'var(--p1)', '2': 'var(--p2)', '3': 'var(--p3)' };
+  [1, 2, 3].forEach(pid => {
+    document.querySelectorAll('#pills-' + pid + ' .week-pill').forEach(pill => {
+      if (pill.classList.contains('active')) {
+        pill.style.background = colors[pid];
+        pill.style.borderColor = colors[pid];
+        pill.style.color = '#fff';
+      } else {
+        pill.style.background = '';
+        pill.style.borderColor = '';
+        pill.style.color = '';
+      }
+    });
+  });
+}
+</script>
+</body>
+</html>
